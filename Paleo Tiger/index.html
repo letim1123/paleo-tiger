@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paleo Tiger</title>
+    <style>
+        body {
+            background-color: rgb(201, 177, 150);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Centrar contenido en toda la página */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .logo img {
+            width: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+        .main-content {
+            background-color: hsl(36, 51%, 73%);
+            border: 1px solid rgb(216, 181, 141);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .section {
+            background-color: #d6b89a;
+            border: 1px solid rgb(127, 185, 112);
+            padding: 10px;
+            margin: 10px auto; /* Asegurar que cada sección esté centrada */
+            cursor: pointer;
+            max-width: 80%; /* Limitar el ancho de las secciones */
+            text-align: center; /* Centrar el texto dentro de las secciones */
+        }
+        .carousel {
+            display: none;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .carousel img {
+            width: 100%;
+            display: none;
+        }
+        .carousel img.active {
+            display: block;
+        }
+        .carousel .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            z-index: 10; /* Asegurarnos que las flechas estén por encima de las imágenes */
+        }
+        .carousel .arrow.left {
+            left: 10px;
+        }
+        .carousel .arrow.right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="images/BackgroundEraser_20240726_081822653.png" alt="Paleo Tiger Logo">
+        </div>
+        <h1>Paleo Tiger</h1>
+        <h2>La historia en la vida de nuestro planeta</h2>
+        <div class="main-content">
+            <p>
+                Somos un grupo de jóvenes Latinoamericanos que buscamos la divulgación científica respecto a la paleobiología en Latinoamérica y otras partes del mundo.
+                Nos dedicamos al paleoarte y dictar talleres, en su mayoría gratuitos, pues el conocimiento es algo que debe estar al alcance de todo el mundo.
+                ¡Acá podrás encontrar información respecto a talleres de paleoarte, paleontología en la región y sobre todo las noticias recientes sobre la Paleontología o biología!
+            </p>
+        </div>
+        <div class="section" id="venezuela">
+            Paleontología Venezuela
+        </div>
+        <div class="carousel" id="carousel-venezuela">
+            <button class="arrow left">&#10094;</button>
+            <button class="arrow right">&#10095;</button>
+            <img src="images/PEDRO.jpeg" class="active" alt="Paleontología Venezuela1">
+            <img src="images/PABLO.jpeg" alt="Paleontología Venezuela2">
+            <img src="images/PEPE.jpeg" alt="Paleontología Venezuela3">
+            <img src="images/ETE SECH.jpeg" alt="Paleontología Venezuela4">
+            <img src="images/andres.jpeg" alt="Paleontología Venezuela5">
+            <img src="images/MARIANO.jpeg" alt="Paleontología Venezuela6">
+            <img src="images/chavo.jpeg" alt="Paleontología Venezuela7">
+            <img src="images/kiko.jpeg" alt="Paleontología Venezuela8">
+            <img src="images/ñoño.jpeg" alt="Paleontología Venezuela9">
+        </div>
+        <div class="section">
+            Paleontología América
+            <img src="tu-imagen-america.png" alt="Paleontología América">
+        </div>
+        <div class="section">
+            Noticias
+            <img src="tu-imagen-noticias.png" alt="Noticias">
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel-venezuela');
+        const images = carousel.querySelectorAll('img');
+        const totalImages = images.length;
+        const prevButton = carousel.querySelector('.arrow.left');
+        const nextButton = carousel.querySelector('.arrow.right');
+        const venezuelaSection = document.getElementById('venezuela');
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+
+        venezuelaSection.addEventListener('click', () => {
+            carousel.style.display = 'block';
+            showImage(currentIndex);
+        });
+    </script>
+</body>
+</html>
